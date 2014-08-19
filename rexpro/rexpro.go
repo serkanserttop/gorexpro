@@ -362,6 +362,7 @@ func int2byte(val int) []byte {
 
 func decodeBody(body []byte) (retVal []interface{}, err error) {
 	var mh = new(codec.MsgpackHandle)
+	mh.RawToString = true
 	mh.MapType = reflect.TypeOf(map[string]interface{}(nil))
 	dec := codec.NewDecoderBytes(body, mh)
 	if e := dec.Decode(&retVal); e != nil {
